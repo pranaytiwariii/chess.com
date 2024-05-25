@@ -29,7 +29,7 @@ export class GameManager {
 
       if (message.type === INIT_GAME) {
         console.log("inside init_game");
-        
+
         if (this.pendingUser) {
           //start game
           const game = new Game(this.pendingUser, socket);
@@ -42,14 +42,15 @@ export class GameManager {
 
       if (message.type === MOVE) {
         console.log("inside move");
-        
+
         const game = this.games.find(
           (game) => game.player1 === socket || game.player2 === socket
         );
         if (game) {
           console.log("inside move if");
-          
+
           game.makeMove(socket, message.move);
+          
         }
       }
     });
